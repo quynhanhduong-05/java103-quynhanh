@@ -35,6 +35,6 @@ public class AuthenticPhone extends Phone {
 
     @Override
     public String toString() {
-        return super.toString() + ", warranty period=" +  warrantyPeriod + ", warranty scope=" + warrantyScope + "]";
+        return super.toString() + getWarrantyPeriod() + "," + isWarrantyScope();
     }
 }

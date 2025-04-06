@@ -49,9 +49,10 @@ public class HandCarriedPhoneManagement extends PhoneManagement {
     public void deletePhone() {
         HandCarriedPhone newPhone = getPhoneInfo();
         for (HandCarriedPhone p : handCarriedPhoneList) {
-            if (p.getId() == newPhone.getId() && p.getName().equals(newPhone.getName())) {
+            if (p.getName().equals(newPhone.getName())) {
                 handCarriedPhoneList.remove(p);
                 System.out.println("Phone deleted successfully");
+                super.deletePhoneFromFile(newPhone);
                 return;
             }
         }
@@ -73,10 +74,11 @@ public class HandCarriedPhoneManagement extends PhoneManagement {
         HandCarriedPhone newPhone = getPhoneInfo();
         for (HandCarriedPhone h : handCarriedPhoneList) {
             if (h.getName().equals(newPhone.getName())) {
-                System.out.printf("%-20s | %-3s | %-10s | %-5s | %-10s | %-10s | %-10 | %-8s%n",
+                System.out.println();
+                System.out.printf("%-20s | %-3s | %-10s | %-5s | %-10s | %-10s | %-10s | %-8s%n",
                         "Phone", "ID", "Name", "Price", "Quantity", "Producer", "Country", "Status");
                 System.out.println("--------------------------------------------------------------------------------------------------");
-                System.out.printf("%-20s | %-3s | %-10s | %-5s | %-10s | %-10s | %-10 | %-8s%n",
+                System.out.printf("%-20s | %-3s | %-10s | %-5s | %-10s | %-10s | %-10s | %-8s%n",
                         "Hand Carried Phone", h.getId(), h.getName(), h.getPrice(), h.getQuantity(), h.getProducer(), h.getCountry(), h.getStatus());
                 System.out.println("Phone found successfully");
                 return;

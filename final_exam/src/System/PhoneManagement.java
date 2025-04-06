@@ -50,7 +50,7 @@ public class PhoneManagement {
         return newPhone;
     }
 
-    public void copyPhoneToFile(Phone phone) {
+    protected void copyPhoneToFile(Phone phone) {
         String path = "/Users/clouq4d/Workspace/Java/final_exam/src/Data/phone.csv";
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(path, true));
@@ -58,6 +58,42 @@ public class PhoneManagement {
             bw.newLine();
             bw.close();
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void deletePhoneFromFile (Phone phone) {
+        String path = "/Users/clouq4d/Workspace/Java/final_exam/src/Data/phone.csv";
+        BufferedReader br = null;
+        List<String> updatedLines = new ArrayList<>();
+        try {
+            br = new BufferedReader(new FileReader(path));
+            String line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                List<String> data = parseCsvLine(line);
+                if (data.size() > 0 && phone.getId() ==  Integer.parseInt(data.get(0))) {
+                    continue;
+                }
+                updatedLines.add(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
+            for (String line : updatedLines) {
+                bw.write(line);
+                bw.newLine();
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

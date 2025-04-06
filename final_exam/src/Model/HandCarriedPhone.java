@@ -35,6 +35,6 @@ public class HandCarriedPhone extends Phone {
 
     @Override
     public String toString() {
-        return super.toString() + ", country=" +  country + ", status=" + status + "]";
+        return super.toString() + getCountry() + "," + getStatus();
     }
 }

@@ -1,6 +1,7 @@
 package Model;
 
 public class Phone {
+    private static int nextId = 1;
     private int id;
     private String name;
     private double price;
@@ -10,11 +11,15 @@ public class Phone {
     public Phone() {}
 
     public Phone(String name, double price, int quantity, String producer) {
-        this.id = ++id;
+        this.id = nextId++;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.producer = producer;
+
+        if (id >= nextId) {
+            nextId++;
+        }
     }
 
     public int getId() {
@@ -55,6 +60,6 @@ public class Phone {
 
     @Override
     public String toString() {
-        return "Phone [id=" + id + ", name=" + name + ", price=" + price + ", quantity=" + quantity;
+        return getId() + "," +  getName() + "," + getPrice() + "," + getQuantity() + "," + getProducer() + ",";
     }
 }

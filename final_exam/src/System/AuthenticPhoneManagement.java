@@ -55,9 +55,10 @@ public class AuthenticPhoneManagement extends PhoneManagement {
     public void deletePhone() {
         AuthenticPhone newPhone = getPhoneInfo();
         for (AuthenticPhone p : authenticPhoneList) {
-            if (p.getId() == newPhone.getId() && p.getName().equals(newPhone.getName())) {
+            if (p.getName().equals(newPhone.getName())) {
                 authenticPhoneList.remove(p);
                 System.out.println("Phone deleted successfully");
+                super.deletePhoneFromFile(newPhone);
                 return;
             }
         }
@@ -79,10 +80,11 @@ public class AuthenticPhoneManagement extends PhoneManagement {
         AuthenticPhone newPhone = getPhoneInfo();
         for (AuthenticPhone h : authenticPhoneList) {
             if (h.getName().equals(newPhone.getName())) {
-                System.out.printf("%-20s | %-3s | %-10s | %-5s | %-10s | %-10s | %-20 | %-17s%n",
+                System.out.println();
+                System.out.printf("%-20s | %-3s | %-10s | %-5s | %-10s | %-10s | %-20s | %-17s%n",
                         "Phone", "ID", "Name", "Price", "Quantity", "Producer", "Warranty Period", "Warranty Scope");
                 System.out.println("------------------------------------------------------------------------------------------------------------------");
-                System.out.printf("%-20s | %-3s | %-10s | %-5s | %-10s | %-10s | %-20 | %-17s%n",
+                System.out.printf("%-20s | %-3s | %-10s | %-5s | %-10s | %-10s | %-20s | %-17s%n",
                         "Authentic Phone", h.getId(), h.getName(), h.getPrice(), h.getQuantity(), h.getProducer(), h.getWarrantyPeriod(), h.isWarrantyScope());
                 System.out.println("Phone found successfully");
                 return;
